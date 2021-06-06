@@ -1,4 +1,4 @@
-resource "aws_instance" "web-server-instance" {
+resource "aws_instance" "ec2_instance" {
   ami = "${var.ami_id}"
   instance_type = "${var.instance_type}"
   key_name = "${var.key_name}"
@@ -7,15 +7,15 @@ resource "aws_instance" "web-server-instance" {
     network_interface_id = "${var.interface_id}"
   
   }
-  user_data = <<-EOF
-                #!/bin/bash
-                sudo apt update -y
-                sudo apt install apache2 -y
-                sudo systemctl start apache2
-                sudo bash -c 'echo this is my terrafrom project> /var/www/html/index.html'
-                EOF
   tags = {
     Name = "web-server"
   }
 
 }
+
+resource "local_file" "inventory"{
+    content = "${aws_instance.ec2_instance.public_ip}"
+    filename = "/home/azureuser/terraform/terraform-ansible-conf/ansible/playbooks/project1/inventory.ini"
+}
+
+

@@ -1,0 +1,9 @@
+
+- name: copy module in effect
+  copy:
+    src: /home/ubuntu/artifacts/game-0.0.1-SNAPSHOT.jar
+    dest: /home/ubuntu/artifacts/game-0.0.1-SNAPSHOT.jar/
+    remote_src: no
+
+# - name: running the spring boot artifact
+  # shell: cd {{home/ubuntu/artifacts/game-0.0.1-SNAPSHOT.jar/}} && java{{/usr/lib/jvm/java-8-openjdk-amd64/bin/}} -jar {{game-0.0.1-SNAPSHOT.jar}}

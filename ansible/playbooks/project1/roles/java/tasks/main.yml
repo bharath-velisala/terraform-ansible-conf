@@ -1,0 +1,22 @@
+- name: installing java
+  apt:
+    name: "openjdk-8-jdk"
+    state: present
+    update_cache: yes
+
+- name: adding path to java
+  alternatives:
+    name: java
+    link: /usr/bin/java
+    path: /usr/lib/jvm/java-8-openjdk-amd64/bin/java
+
+
+# - name: checking java version
+#   shell: 
+#     cmd: java -version
+#     register: out
+
+
+# - name: displaying java version
+#   debug:
+#     msg: "{{out.stdout}}"

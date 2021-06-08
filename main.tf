@@ -69,7 +69,7 @@ module "ec2" {
   
 }
 
-module "ansible"{
-    source="/home/azureuser/terraform/terraform-ansible-conf/modules/ansible-command"
-    command ="sudo ansible-playbook -i /home/azureuser/terraform/terraform-ansible-conf/ansible/playbooks/project1/inventory.ini  /home/azureuser/terraform/terraform-ansible/ansible/playbooks/project1/master.yml -u ubuntu --private-key ~/.ssh/aws-keypair.pem"
-}
+# module "ansible"{
+#     source="/home/azureuser/terraform/terraform-ansible-conf/modules/ansible-command"
+#     command ="sudo ansible-playbook -i /home/azureuser/terraform/terraform-ansible-conf/ansible/playbooks/project1/inventory.ini  /home/azureuser/terraform/terraform-ansible/ansible/playbooks/project1/master.yml -u ubuntu --private-key ~/.ssh/aws-keypair.pem"
+# }

@@ -1,0 +1,53 @@
+adhook commads:
+
+sudo ansible -i <inventory file path> -u ubuntu -m ping all --private-key ~/awskeypair.pem
+
+sudo ansible-playbook -i <inventory file path> --limit <particular group name>  <playbook path>
+
+
+sudo ansible-playbook -i <inventory file path> -u <username> <playbook file path> --private-key ~/.ssh/<secretkey path> (i.e pem file path)
+
+sudo ansible-vault encrypt <file name or file path>
+
+next it will ask for password enter and confirm password
+
+sudo ansible-vault decrypt <file name or file path>
+
+enter password to decrypt
+
+
+
+[amazon_production]
+18.204.20.245
+100.27.19.15
+
+[amazon_dev]
+18.204.20.245
+
+[amazon_production:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=/home/azureuser/.ssh/aws-keypair.pem
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+
+[amazon_dev:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=/home/azureuser/.ssh/aws-keypair.pem
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+[azure]
+40.121.65.248
+
+[azure:vars]
+ansible_ssh_user=azureuser
+ansible_ssh_private_key_file=/home/azureuser/.ssh/azurekeypair-saran.pem
+
+[amazon:children]
+amazon_dev
+amazon_production
+
+[amazon:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=/home/azureuser/.ssh/aws-keypair.pem
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
